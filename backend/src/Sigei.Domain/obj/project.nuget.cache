@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "I/2g+DnHzrw=",
+  "success": true,
+  "projectFilePath": "/home/sexta-feira/Documents/Projetos/SIGEI---Sistema-de-Gerenciamento/backend/src/Sigei.Domain/Sigei.Domain.csproj",
+  "expectedPackageFiles": [
+    "/home/sexta-feira/.nuget/packages/microsoft.aspnetcore.app.ref/10.0.14/microsoft.aspnetcore.app.ref.10.0.14.nupkg.sha512"
+  ],
+  "logs": []
+}

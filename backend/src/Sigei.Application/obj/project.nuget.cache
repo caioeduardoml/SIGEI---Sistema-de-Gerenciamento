@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "dgSpecHash": "Q9LjV3/GL+A=",
+  "success": true,
+  "projectFilePath": "/home/sexta-feira/Documents/Projetos/SIGEI---Sistema-de-Gerenciamento/backend/src/Sigei.Application/Sigei.Application.csproj",
+  "expectedPackageFiles": [
+    "/home/sexta-feira/.nuget/packages/fluentvalidation/11.11.0/fluentvalidation.11.11.0.nupkg.sha512",
+    "/home/sexta-feira/.nuget/packages/fluentvalidation.dependencyinjectionextensions/11.11.0/fluentvalidation.dependencyinjectionextensions.11.11.0.nupkg.sha512",
+    "/home/sexta-feira/.nuget/packages/mediatr/12.4.1/mediatr.12.4.1.nupkg.sha512",
+    "/home/sexta-feira/.nuget/packages/mediatr.contracts/2.0.1/mediatr.contracts.2.0.1.nupkg.sha512",
+    "/home/sexta-feira/.nuget/packages/microsoft.extensions.dependencyinjection.abstractions/8.0.0/microsoft.extensions.dependencyinjection.abstractions.8.0.0.nupkg.sha512",
+    "/home/sexta-feira/.nuget/packages/microsoft.aspnetcore.app.ref/10.0.14/microsoft.aspnetcore.app.ref.10.0.14.nupkg.sha512"
+  ],
+  "logs": []
+}

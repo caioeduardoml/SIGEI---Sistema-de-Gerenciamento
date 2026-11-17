@@ -1,0 +1,16 @@
+/home/sexta-feira/Documents/Projetos/SIGEI---Sistema-de-Gerenciamento/backend/src/Sigei.Application/bin/Debug/net10.0/Sigei.Application.deps.json
+/home/sexta-feira/Documents/Projetos/SIGEI---Sistema-de-Gerenciamento/backend/src/Sigei.Application/bin/Debug/net10.0/Sigei.Application.dll
+/home/sexta-feira/Documents/Projetos/SIGEI---Sistema-de-Gerenciamento/backend/src/Sigei.Application/bin/Debug/net10.0/Sigei.Application.pdb
+/home/sexta-feira/Documents/Projetos/SIGEI---Sistema-de-Gerenciamento/backend/src/Sigei.Application/bin/Debug/net10.0/Sigei.Domain.dll
+/home/sexta-feira/Documents/Projetos/SIGEI---Sistema-de-Gerenciamento/backend/src/Sigei.Application/bin/Debug/net10.0/Sigei.Domain.pdb
+/home/sexta-feira/Documents/Projetos/SIGEI---Sistema-de-Gerenciamento/backend/src/Sigei.Application/obj/Debug/net10.0/Sigei.Application.csproj.AssemblyReference.cache
+/home/sexta-feira/Documents/Projetos/SIGEI---Sistema-de-Gerenciamento/backend/src/Sigei.Application/obj/Debug/net10.0/Sigei.Application.GeneratedMSBuildEditorConfig.editorconfig
+/home/sexta-feira/Documents/Projetos/SIGEI---Sistema-de-Gerenciamento/backend/src/Sigei.Application/obj/Debug/net10.0/Sigei.Application.AssemblyInfoInputs.cache
+/home/sexta-feira/Documents/Projetos/SIGEI---Sistema-de-Gerenciamento/backend/src/Sigei.Application/obj/Debug/net10.0/Sigei.Application.AssemblyInfo.cs
+/home/sexta-feira/Documents/Projetos/SIGEI---Sistema-de-Gerenciamento/backend/src/Sigei.Application/obj/Debug/net10.0/Sigei.Application.csproj.CoreCompileInputs.cache
+/home/sexta-feira/Documents/Projetos/SIGEI---Sistema-de-Gerenciamento/backend/src/Sigei.Application/obj/Debug/net10.0/Sigei.Application.sourcelink.json
+/home/sexta-feira/Documents/Projetos/SIGEI---Sistema-de-Gerenciamento/backend/src/Sigei.Application/obj/Debug/net10.0/Sigei.Ap.458B1A5C.Up2Date
+/home/sexta-feira/Documents/Projetos/SIGEI---Sistema-de-Gerenciamento/backend/src/Sigei.Application/obj/Debug/net10.0/Sigei.Application.dll
+/home/sexta-feira/Documents/Projetos/SIGEI---Sistema-de-Gerenciamento/backend/src/Sigei.Application/obj/Debug/net10.0/refint/Sigei.Application.dll
+/home/sexta-feira/Documents/Projetos/SIGEI---Sistema-de-Gerenciamento/backend/src/Sigei.Application/obj/Debug/net10.0/Sigei.Application.pdb
+/home/sexta-feira/Documents/Projetos/SIGEI---Sistema-de-Gerenciamento/backend/src/Sigei.Application/obj/Debug/net10.0/ref/Sigei.Application.dll

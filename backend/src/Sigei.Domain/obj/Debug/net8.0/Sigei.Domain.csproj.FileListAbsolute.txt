@@ -1,0 +1,12 @@
+/home/sexta-feira/Documents/Projetos/SIGEI---Sistema-de-Gerenciamento/backend/src/Sigei.Domain/bin/Debug/net8.0/Sigei.Domain.deps.json
+/home/sexta-feira/Documents/Projetos/SIGEI---Sistema-de-Gerenciamento/backend/src/Sigei.Domain/bin/Debug/net8.0/Sigei.Domain.dll
+/home/sexta-feira/Documents/Projetos/SIGEI---Sistema-de-Gerenciamento/backend/src/Sigei.Domain/bin/Debug/net8.0/Sigei.Domain.pdb
+/home/sexta-feira/Documents/Projetos/SIGEI---Sistema-de-Gerenciamento/backend/src/Sigei.Domain/obj/Debug/net8.0/Sigei.Domain.GeneratedMSBuildEditorConfig.editorconfig
+/home/sexta-feira/Documents/Projetos/SIGEI---Sistema-de-Gerenciamento/backend/src/Sigei.Domain/obj/Debug/net8.0/Sigei.Domain.AssemblyInfoInputs.cache
+/home/sexta-feira/Documents/Projetos/SIGEI---Sistema-de-Gerenciamento/backend/src/Sigei.Domain/obj/Debug/net8.0/Sigei.Domain.AssemblyInfo.cs
+/home/sexta-feira/Documents/Projetos/SIGEI---Sistema-de-Gerenciamento/backend/src/Sigei.Domain/obj/Debug/net8.0/Sigei.Domain.csproj.CoreCompileInputs.cache
+/home/sexta-feira/Documents/Projetos/SIGEI---Sistema-de-Gerenciamento/backend/src/Sigei.Domain/obj/Debug/net8.0/Sigei.Domain.sourcelink.json
+/home/sexta-feira/Documents/Projetos/SIGEI---Sistema-de-Gerenciamento/backend/src/Sigei.Domain/obj/Debug/net8.0/Sigei.Domain.dll
+/home/sexta-feira/Documents/Projetos/SIGEI---Sistema-de-Gerenciamento/backend/src/Sigei.Domain/obj/Debug/net8.0/refint/Sigei.Domain.dll
+/home/sexta-feira/Documents/Projetos/SIGEI---Sistema-de-Gerenciamento/backend/src/Sigei.Domain/obj/Debug/net8.0/Sigei.Domain.pdb
+/home/sexta-feira/Documents/Projetos/SIGEI---Sistema-de-Gerenciamento/backend/src/Sigei.Domain/obj/Debug/net8.0/ref/Sigei.Domain.dll

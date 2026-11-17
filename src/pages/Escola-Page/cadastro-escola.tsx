@@ -1,54 +1,156 @@
-import React from 'react'
-import Input from '../../assets/components/Input';
-import Footer from '../../assets/components/Footer/footer';
-import Back from "../../assets/images/back.svg"
+import React, { useCallback, useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { z } from 'zod';
+import { useMutation } from '@tanstack/react-query';
+import {
+  Alert,
+  Box,
+  Button,
+  Card,
+  CardContent,
+  Container,
+  Grid,
+  Stack,
+  TextField,
+  Typography,
+} from '@mui/material';
+import SaveIcon from '@mui/icons-material/Save';
 
-import PageHeader from "../../assets/components/PageHeader/index"
-import "../../assets/components/PageHeader/index.css"
+import AppHeader from 'components/AppHeader';
+import { useMuiSnackbar } from 'components/SnackbarProvider';
+import { escolasApi } from 'features/escolas/api/escolasApi';
 
-import "./escola.css"
-import { Link } from 'react-router-dom';
+const escolaSchema = z.object({
+  nome: z.string().min(3, 'Informe o nome da escola.'),
+  email: z.string().email('Informe um e-mail valido.'),
+  telefone: z.string().min(8, 'Informe um telefone valido.'),
+  endereco: z.string().min(5, 'Informe o endereco completo.'),
+});
 
-function CadastroEscola(){
-    return(
+type EscolaFormValues = z.infer<typeof escolaSchema>;
 
-    <div id="page">
-        <PageHeader title="Então você deseja cadastrar uma escola!" 
-        subtitle="O primeiro passo, é preencher esse formulário de cadastro.">
-                <Link to="/">
-                    <img src={Back} alt="voltar"/>
-                </Link>
-        </PageHeader>
+export const CadastroEscola: React.FC = () => {
+  const { showSnackbar } = useMuiSnackbar();
+  const [codigoGerado, setCodigoGerado] = useState<string | null>(null);
 
-        <main>
-            <fieldset>
-                <legend>Seus Dados</legend>
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm<EscolaFormValues>({
+    resolver: zodResolver(escolaSchema),
+    defaultValues: { nome: '', email: '', telefone: '', endereco: '' },
+  });
 
-                <Input label="Nome da escola"
-                htmlFor="name"
-                type="name"/>
+  const mutation = useMutation({
+    mutationFn: escolasApi.cadastrar,
+    onSuccess: (escola) => {
+      setCodigoGerado(escola.codigoVerificacao);
+      showSnackbar('Escola cadastrada com sucesso!', 'success');
+      reset();
+    },
+    onError: (err: Error) => {
+      showSnackbar(err.message || 'Erro ao cadastrar escola.', 'error');
+    },
+  });
 
-                {/* foto */}
+  const onSubmit = useCallback(
+    (values: EscolaFormValues) => {
+      mutation.mutate(values);
+    },
+    [mutation]
+  );
 
-                <Input label="E-mail"
-                htmlFor="email"
-                type="email"/>
+  return (
+    <Box sx={{ minHeight: '100vh', bgcolor: 'background.default', pb: 6 }}>
+      <AppHeader
+        title="Cadastro de Escola"
+        subtitle="Preencha os dados da instituicao para gerar o codigo de acesso dos servidores."
+        backTo="/"
+        showUserActions={false}
+      />
 
-                <Input label="Telefone"
-                htmlFor="telefone"
-                type="text"/>
+      <Container maxWidth="md">
+        <Card>
+          <CardContent sx={{ p: { xs: 3, md: 4 } }}>
+            <Stack spacing={3} component="form" onSubmit={handleSubmit(onSubmit)} noValidate>
+              {codigoGerado && (
+                <Alert severity="success">
+                  Escola registrada! Codigo de verificacao para servidores:{' '}
+                  <strong>{codigoGerado}</strong>
+                </Alert>
+              )}
 
-                <Input label="Endereço"
-                htmlFor="endereco"
-                type="text"/>
+              <Typography variant="h6">Dados da Instituicao</Typography>
 
-                {/* mapa */}
-            </fieldset>
+              <Grid container spacing={2.5}>
+                <Grid size={{ xs: 12 }}>
+                  <TextField
+                    id="escola-nome"
+                    label="Nome da escola"
+                    error={Boolean(errors.nome)}
+                    helperText={errors.nome?.message}
+                    {...register('nome')}
+                  />
+                </Grid>
 
-            <Footer frase="Após o cadastro você receberá em seu e-mail um código que será utilizado para o cadastro de outro servidores da escola."/>
-        </main>
-    </div>
-    );
-}
+                <Grid size={{ xs: 12, md: 6 }}>
+                  <TextField
+                    id="escola-email"
+                    label="E-mail institucional"
+                    type="email"
+                    error={Boolean(errors.email)}
+                    helperText={errors.email?.message}
+                    {...register('email')}
+                  />
+                </Grid>
+
+                <Grid size={{ xs: 12, md: 6 }}>
+                  <TextField
+                    id="escola-telefone"
+                    label="Telefone"
+                    error={Boolean(errors.telefone)}
+                    helperText={errors.telefone?.message}
+                    {...register('telefone')}
+                  />
+                </Grid>
+
+                <Grid size={{ xs: 12 }}>
+                  <TextField
+                    id="escola-endereco"
+                    label="Endereco"
+                    error={Boolean(errors.endereco)}
+                    helperText={errors.endereco?.message}
+                    {...register('endereco')}
+                  />
+                </Grid>
+              </Grid>
+
+              <Alert severity="info">
+                Apos o cadastro, compartilhe o codigo gerado com coordenadores e professores da
+                escola para que possam criar suas contas.
+              </Alert>
+
+              <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
+                <Button
+                  type="submit"
+                  variant="contained"
+                  color="success"
+                  size="large"
+                  disabled={mutation.isPending}
+                  startIcon={<SaveIcon />}
+                >
+                  {mutation.isPending ? 'Salvando...' : 'Salvar cadastro'}
+                </Button>
+              </Box>
+            </Stack>
+          </CardContent>
+        </Card>
+      </Container>
+    </Box>
+  );
+};
 
 export default CadastroEscola;
