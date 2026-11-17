@@ -1,0 +1,46 @@
+# Dependencias e build do Frontend (Node / React)
+node_modules/
+build/
+dist/
+.eslintcache
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Variaveis de ambiente e segredos locais
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+secrets.json
+appsettings.Development.json
+appsettings.Local.json
+
+# Artefatos de compilacao e testes (.NET)
+bin/
+obj/
+publish/
+TestResults/
+*.trx
+*.coverage
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+.vs/
+
+# Bancos de dados locais (SQLite)
+*.db
+*.db-shm
+*.db-wal
+*.sqlite
+*.sqlite3
+
+# Editores e sistema operacional
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
