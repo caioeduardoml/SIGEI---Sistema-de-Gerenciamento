@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Sigei.Domain")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+82d0a7647591142186462711c1a40715fcde1958")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3d2aa5933ea519bfb6b6f72dc0ed35878ac9110c")]
 [assembly: System.Reflection.AssemblyProductAttribute("Sigei.Domain")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Sigei.Domain")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
