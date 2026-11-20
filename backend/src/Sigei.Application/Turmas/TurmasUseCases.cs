@@ -43,6 +43,15 @@ public sealed record CriarTurmaCommand(
     string Curso,
     string Turno) : IRequest<TurmaResumoDto>;
 
+public sealed record AtualizarTurmaCommand(
+    Guid TurmaId,
+    string Nome,
+    string Curso,
+    string Turno,
+    Guid? EscolaIdAutenticada = null) : IRequest<TurmaResumoDto>;
+
+public sealed record ExcluirTurmaCommand(Guid TurmaId, Guid? EscolaIdAutenticada = null) : IRequest;
+
 public sealed record AtualizarHorarioSlotCommand(
     Guid HorarioId,
     string Disciplina,
@@ -134,7 +143,7 @@ public sealed class CriarTurmaCommandHandler(
             (3, "Intervalo", true, "Intervalo"),
             (4, "10h - 11h", false, "A definir"),
             (5, "11h - 12h", false, "A definir"),
-            (6, "Almoco", true, "Almoco"),
+            (6, "Almoço", true, "Almoço"),
             (7, "13h - 14h", false, "A definir"),
             (8, "14h - 15h", false, "A definir"),
             (9, "Intervalo Tarde", true, "Intervalo"),
@@ -215,5 +224,53 @@ public sealed class AtualizarHorarioSlotCommandHandler(
             horario.ProfessorId,
             horario.NomeProfessorExibicao,
             horario.EhIntervalo);
+    }
+}
+
+public sealed class AtualizarTurmaCommandValidator : AbstractValidator<AtualizarTurmaCommand>
+{
+    public AtualizarTurmaCommandValidator()
+    {
+        RuleFor(x => x.TurmaId).NotEmpty();
+        RuleFor(x => x.Nome).NotEmpty().MaximumLength(100);
+        RuleFor(x => x.Curso).NotEmpty().MaximumLength(80);
+    }
+}
+
+public sealed class AtualizarTurmaCommandHandler(
+    ITurmaRepository turmaRepository,
+    IUnitOfWork unitOfWork)
+    : IRequestHandler<AtualizarTurmaCommand, TurmaResumoDto>
+{
+    public async Task<TurmaResumoDto> Handle(AtualizarTurmaCommand request, CancellationToken cancellationToken)
+    {
+        var turma = await turmaRepository.ObterPorIdAsync(request.TurmaId, cancellationToken)
+            ?? throw new NotFoundException("Turma nao encontrada.");
+
+        if (request.EscolaIdAutenticada.HasValue && turma.EscolaId != request.EscolaIdAutenticada.Value)
+            throw new UnauthorizedException("Acesso negado para turma de outra escola.");
+
+        turma.Atualizar(request.Nome, request.Curso, request.Turno);
+        await unitOfWork.SaveChangesAsync(cancellationToken);
+
+        return new TurmaResumoDto(turma.Id, turma.Codigo, turma.Nome, turma.Curso, turma.Turno);
+    }
+}
+
+public sealed class ExcluirTurmaCommandHandler(
+    ITurmaRepository turmaRepository,
+    IUnitOfWork unitOfWork)
+    : IRequestHandler<ExcluirTurmaCommand>
+{
+    public async Task Handle(ExcluirTurmaCommand request, CancellationToken cancellationToken)
+    {
+        var turma = await turmaRepository.ObterPorIdAsync(request.TurmaId, cancellationToken)
+            ?? throw new NotFoundException("Turma nao encontrada.");
+
+        if (request.EscolaIdAutenticada.HasValue && turma.EscolaId != request.EscolaIdAutenticada.Value)
+            throw new UnauthorizedException("Acesso negado para turma de outra escola.");
+
+        turmaRepository.Remover(turma);
+        await unitOfWork.SaveChangesAsync(cancellationToken);
     }
 }

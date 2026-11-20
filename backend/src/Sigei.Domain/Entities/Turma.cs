@@ -33,4 +33,16 @@ public sealed class Turma : BaseEntity
         Curso = curso.Trim();
         Turno = turno.Trim();
     }
+
+    public void Atualizar(string nome, string curso, string turno)
+    {
+        if (string.IsNullOrWhiteSpace(nome))
+            throw new DomainException("O nome da turma e obrigatorio.");
+        if (string.IsNullOrWhiteSpace(curso))
+            throw new DomainException("O curso da turma e obrigatorio.");
+
+        Nome = nome.Trim();
+        Curso = curso.Trim();
+        Turno = string.IsNullOrWhiteSpace(turno) ? "Integral" : turno.Trim();
+    }
 }

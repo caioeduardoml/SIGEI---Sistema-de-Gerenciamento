@@ -1,62 +1,112 @@
 import { createTheme } from '@mui/material/styles';
 
-// Tema SIGEI baseado no Design System: contraste >= 4.5:1, foco visivel e tipografia Plus Jakarta Sans
+// Identidade Visual Modern Organic Playful:
+// Off-white quente (#F9F6F3), Verde petroleo (#287F78), Laranja vibrante (#FFA000), Cards (#F0F0EF)
 export const sigeiTheme = createTheme({
   palette: {
     mode: 'light',
     primary: {
-      main: '#7C3AED',
-      light: '#A78BFA',
-      dark: '#4C1D95',
+      main: '#287F78',
+      light: '#45A39B',
+      dark: '#1D5E59',
       contrastText: '#FFFFFF',
     },
     secondary: {
-      main: '#F97316',
-      light: '#FB923C',
-      dark: '#C2410C',
+      main: '#FFA000',
+      light: '#FFB733',
+      dark: '#E08C00',
       contrastText: '#FFFFFF',
     },
     success: {
-      main: '#059669',
+      main: '#287F78',
       contrastText: '#FFFFFF',
     },
     background: {
-      default: '#FAF5FF',
-      paper: '#FFFFFF',
+      default: '#F9F6F3',
+      paper: '#F0F0EF',
     },
     text: {
-      primary: '#0F172A',
-      secondary: '#475569',
+      primary: '#252321',
+      secondary: '#77736F',
     },
-    divider: '#E2E8F0',
+    divider: '#E0DDD8',
   },
   typography: {
-    fontFamily: "'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
-    h1: { fontWeight: 800, color: '#4C1D95' },
-    h2: { fontWeight: 700, color: '#4C1D95' },
-    h3: { fontWeight: 700, color: '#0F172A' },
-    h4: { fontWeight: 700, color: '#0F172A' },
-    h5: { fontWeight: 600, color: '#0F172A' },
-    h6: { fontWeight: 600, color: '#0F172A' },
-    body1: { fontSize: '1rem', lineHeight: 1.6 },
-    body2: { fontSize: '0.875rem', lineHeight: 1.5, color: '#475569' },
-    button: { textTransform: 'none', fontWeight: 600 },
+    fontFamily: "'Nunito Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
+    h1: {
+      fontFamily: "'Dosis', sans-serif",
+      fontWeight: 800,
+      color: '#252321',
+      letterSpacing: '-0.01em',
+    },
+    h2: {
+      fontFamily: "'Dosis', sans-serif",
+      fontWeight: 700,
+      color: '#252321',
+      letterSpacing: '-0.01em',
+    },
+    h3: {
+      fontFamily: "'Dosis', sans-serif",
+      fontWeight: 700,
+      color: '#252321',
+    },
+    h4: {
+      fontFamily: "'Dosis', sans-serif",
+      fontWeight: 700,
+      color: '#252321',
+    },
+    h5: {
+      fontFamily: "'Dosis', sans-serif",
+      fontWeight: 700,
+      color: '#252321',
+    },
+    h6: {
+      fontFamily: "'Dosis', sans-serif",
+      fontWeight: 700,
+      color: '#252321',
+    },
+    body1: {
+      fontSize: '1rem',
+      lineHeight: 1.65,
+      color: '#252321',
+    },
+    body2: {
+      fontSize: '0.9rem',
+      lineHeight: 1.55,
+      color: '#77736F',
+    },
+    button: {
+      fontFamily: "'Nunito Sans', sans-serif",
+      textTransform: 'none',
+      fontWeight: 700,
+    },
   },
   shape: {
-    borderRadius: 16,
+    borderRadius: 18,
   },
   components: {
     MuiButton: {
       styleOverrides: {
         root: {
-          borderRadius: 12,
+          borderRadius: 999,
           minHeight: 44,
-          paddingInline: 20,
+          paddingInline: 22,
+          boxShadow: 'none',
           cursor: 'pointer',
-          transition: 'background-color 200ms ease, box-shadow 200ms ease, border-color 200ms ease',
+          transition: 'background-color 200ms ease, border-color 200ms ease, transform 150ms ease',
+          '&:hover': {
+            boxShadow: 'none',
+          },
           '&:focus-visible': {
-            outline: '3px solid #A78BFA',
+            outline: '3px solid #FFA000',
             outlineOffset: 2,
+          },
+        },
+        containedSecondary: {
+          color: '#FFFFFF',
+          backgroundColor: '#FFA000',
+          '&:hover': {
+            backgroundColor: '#E58F00',
           },
         },
       },
@@ -64,9 +114,28 @@ export const sigeiTheme = createTheme({
     MuiCard: {
       styleOverrides: {
         root: {
-          borderRadius: 16,
-          border: '1px solid #E2E8F0',
-          boxShadow: '0 4px 20px rgba(124, 58, 237, 0.06)',
+          backgroundColor: '#F0F0EF',
+          borderRadius: 20,
+          border: '1px solid #E0DDD8',
+          boxShadow: 'none',
+        },
+      },
+    },
+    MuiPaper: {
+      styleOverrides: {
+        root: {
+          backgroundColor: '#F0F0EF',
+          borderRadius: 18,
+          border: '1px solid #E0DDD8',
+          boxShadow: 'none',
+        },
+      },
+    },
+    MuiOutlinedInput: {
+      styleOverrides: {
+        root: {
+          backgroundColor: '#FFFFFF',
+          borderRadius: 14,
         },
       },
     },
@@ -74,6 +143,13 @@ export const sigeiTheme = createTheme({
       defaultProps: {
         variant: 'outlined',
         fullWidth: true,
+      },
+    },
+    MuiDialog: {
+      styleOverrides: {
+        paper: {
+          backgroundColor: '#F9F6F3',
+        },
       },
     },
   },

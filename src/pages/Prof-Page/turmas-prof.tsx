@@ -59,7 +59,7 @@ export const TurmaProf: React.FC = () => {
     <Box sx={{ minHeight: '100vh', bgcolor: 'background.default', pb: 6 }}>
       <AppHeader
         title="Portal do Professor"
-        subtitle="Consulte as turmas e os horarios das suas aulas na semana."
+        subtitle="Consulte as turmas e os horários das suas aulas na semana."
         backTo="/"
       />
       <SuspenseLoader>

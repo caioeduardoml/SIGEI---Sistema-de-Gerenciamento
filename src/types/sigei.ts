@@ -1,10 +1,10 @@
-export type PerfilUsuario = 'Coordenador' | 'Professor';
+export type PerfilUsuario = 'Diretor' | 'Coordenador' | 'Professor';
 
 export type DiaSemana = 1 | 2 | 3 | 4 | 5;
 
 export const DIA_SEMANA_LABEL: Record<DiaSemana, string> = {
   1: 'Segunda',
-  2: 'Terca',
+  2: 'Terça',
   3: 'Quarta',
   4: 'Quinta',
   5: 'Sexta',

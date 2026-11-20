@@ -19,52 +19,63 @@ public static class DataSeeder
             "Escola Estadual Modelo SIGEI",
             "contato@sigei.edu.br",
             "(11) 3740-2510",
-            "Av. Educacao, 1000 - Centro",
+            "Av. Educação, 1000 - Centro",
             "SIGEI-2026");
 
         await dbContext.Escolas.AddAsync(escola, cancellationToken);
 
         var senhaPadrao = passwordHasher.Hash("Sigei@123");
 
+        var diretor = new Usuario(
+            escola.Id,
+            "Diretoria Geral",
+            "DIR-001",
+            "000.000.000-00",
+            "Direção Escolar",
+            "diretor@sigei.com",
+            senhaPadrao,
+            PerfilUsuario.Diretor,
+            aulasTotaisSemestre: 0);
+
         var coordenador = new Usuario(
             escola.Id,
-            "Coordenacao Pedagogica",
+            "Coordenação Pedagógica",
             "COORD-001",
             "111.111.111-11",
-            "Ensino Medio e Tecnico",
+            "Ensino Médio e Técnico",
             "coord@sigei.com",
             senhaPadrao,
             PerfilUsuario.Coordenador,
             aulasTotaisSemestre: 0);
 
-        var profGaby = new Usuario(escola.Id, "Gabriella", "PROF-001", "222.222.222-22", "Matematica", "gabriella@sigei.com", senhaPadrao, PerfilUsuario.Professor, 50);
+        var profGaby = new Usuario(escola.Id, "Gabriella", "PROF-001", "222.222.222-22", "Matemática", "gabriella@sigei.com", senhaPadrao, PerfilUsuario.Professor, 50);
         profGaby.DefinirMetricasIniciais(8, 2);
 
-        var profCaio = new Usuario(escola.Id, "Caio Gilberto", "PROF-002", "333.333.333-33", "Fisica, Quimica", "caio@sigei.com", senhaPadrao, PerfilUsuario.Professor, 50);
+        var profCaio = new Usuario(escola.Id, "Caio Gilberto", "PROF-002", "333.333.333-33", "Física, Química", "caio@sigei.com", senhaPadrao, PerfilUsuario.Professor, 50);
         profCaio.DefinirMetricasIniciais(20, 0);
 
-        var profJoao = new Usuario(escola.Id, "Joao Vitor", "PROF-003", "444.444.444-44", "Portugues, Ingles", "joao@sigei.com", senhaPadrao, PerfilUsuario.Professor, 50);
+        var profJoao = new Usuario(escola.Id, "João Vitor", "PROF-003", "444.444.444-44", "Português, Inglês", "joao@sigei.com", senhaPadrao, PerfilUsuario.Professor, 50);
         profJoao.DefinirMetricasIniciais(9, 3);
 
-        var profMarcio = new Usuario(escola.Id, "Marcio do Sul", "PROF-004", "555.555.555-55", "Geografia, Historia", "marcio@sigei.com", senhaPadrao, PerfilUsuario.Professor, 50);
+        var profMarcio = new Usuario(escola.Id, "Márcio do Sul", "PROF-004", "555.555.555-55", "Geografia, História", "marcio@sigei.com", senhaPadrao, PerfilUsuario.Professor, 50);
         profMarcio.DefinirMetricasIniciais(14, 1);
 
-        await dbContext.Usuarios.AddRangeAsync([coordenador, profGaby, profCaio, profJoao, profMarcio], cancellationToken);
+        await dbContext.Usuarios.AddRangeAsync([diretor, coordenador, profGaby, profCaio, profJoao, profMarcio], cancellationToken);
 
         var turmasSpec = new (string Codigo, string Nome, string Curso)[]
         {
-            ("1BInfo", "1o Ano B Info", "Informatica"),
-            ("1CInfo", "1o Ano C Info", "Informatica"),
-            ("2AInfo", "2o Ano A Info", "Informatica"),
-            ("2BInfo", "2o Ano B Info", "Informatica"),
-            ("2CInfo", "2o Ano C Info", "Informatica"),
-            ("3AInfo", "3o Ano A Info", "Informatica"),
-            ("3BInfo", "3o Ano B Info", "Informatica"),
-            ("1ABio", "1o Ano A Bio", "Biologia"),
-            ("1BBio", "1o Ano B Bio", "Biologia"),
-            ("2ABio", "2o Ano A Bio", "Biologia"),
-            ("2BBio", "2o Ano B Bio", "Biologia"),
-            ("3ABio", "3o Ano A Bio", "Biologia")
+            ("1BInfo", "1º Ano B Info", "Informática"),
+            ("1CInfo", "1º Ano C Info", "Informática"),
+            ("2AInfo", "2º Ano A Info", "Informática"),
+            ("2BInfo", "2º Ano B Info", "Informática"),
+            ("2CInfo", "2º Ano C Info", "Informática"),
+            ("3AInfo", "3º Ano A Info", "Informática"),
+            ("3BInfo", "3º Ano B Info", "Informática"),
+            ("1ABio", "1º Ano A Bio", "Biologia"),
+            ("1BBio", "1º Ano B Bio", "Biologia"),
+            ("2ABio", "2º Ano A Bio", "Biologia"),
+            ("2BBio", "2º Ano B Bio", "Biologia"),
+            ("3ABio", "3º Ano A Bio", "Biologia")
         };
 
         var turmas = turmasSpec.Select(t => new Turma(escola.Id, t.Codigo, t.Nome, t.Curso)).ToList();
@@ -73,20 +84,27 @@ public static class DataSeeder
         var horarios = new List<HorarioAula>();
         var faixas = new (int Ordem, string Faixa, bool Intervalo, string Label)[]
         {
-            (1, "08h - 09h", false, "Portugues"),
-            (2, "09h - 10h", false, "Portugues"),
+            (1, "08h - 09h", false, "Português"),
+            (2, "09h - 10h", false, "Português"),
             (3, "Intervalo", true, "Intervalo"),
-            (4, "10h - 11h", false, "Quimica"),
-            (5, "11h - 12h", false, "Quimica"),
-            (6, "Almoco", true, "Almoco"),
-            (7, "13h - 14h", false, "Matematica"),
-            (8, "14h - 15h", false, "Matematica"),
+            (4, "10h - 11h", false, "Química"),
+            (5, "11h - 12h", false, "Química"),
+            (6, "Almoço", true, "Almoço"),
+            (7, "13h - 14h", false, "Matemática"),
+            (8, "14h - 15h", false, "Matemática"),
             (9, "Intervalo Tarde", true, "Intervalo"),
-            (10, "15h - 16h", false, "Fisica"),
-            (11, "16h - 17h", false, "Historia")
+            (10, "15h - 16h", false, "Física"),
+            (11, "16h - 17h", false, "História")
         };
 
-        var professores = new[] { profJoao, profCaio, profGaby, profMarcio };
+        // Mapeamento consistente: cada disciplina possui um unico professor titular na turma
+        Usuario ObterTitular(string disciplina) => disciplina switch
+        {
+            "Português" or "Inglês" => profJoao,
+            "Matemática" => profGaby,
+            "Física" or "Química" => profCaio,
+            _ => profMarcio
+        };
 
         foreach (var turma in turmas)
         {
@@ -100,21 +118,28 @@ public static class DataSeeder
                         continue;
                     }
 
-                    var (disciplina, prof) = (dia, faixa.Ordem) switch
+                    string disciplina = (dia, faixa.Ordem) switch
                     {
-                        (DiaSemana.Segunda, 1 or 2) => ("Portugues", profJoao),
-                        (DiaSemana.Terca, 1 or 2) => ("Geografia", profMarcio),
-                        (DiaSemana.Quarta, 1 or 2) => ("Historia", profMarcio),
-                        (DiaSemana.Quinta, 1 or 2) => ("Ingles", profJoao),
-                        (DiaSemana.Sexta, 1 or 2) => ("Fisica", profCaio),
-                        (DiaSemana.Segunda, 4 or 5) => ("Quimica", profCaio),
-                        (DiaSemana.Terca, 4 or 5) => ("Ingles", profJoao),
-                        (DiaSemana.Quarta, 4 or 5) => ("Fisica", profCaio),
-                        (DiaSemana.Quinta, 4 or 5) => ("Portugues", profJoao),
-                        (DiaSemana.Sexta, 4 or 5) => ("Matematica", profGaby),
-                        _ => (faixa.Label, professores[(faixa.Ordem + (int)dia) % professores.Length])
+                        (DiaSemana.Segunda, 1 or 2) => "Português",
+                        (DiaSemana.Terca, 1 or 2) => "Geografia",
+                        (DiaSemana.Quarta, 1 or 2) => "História",
+                        (DiaSemana.Quinta, 1 or 2) => "Inglês",
+                        (DiaSemana.Sexta, 1 or 2) => "Física",
+                        (DiaSemana.Segunda, 4 or 5) => "Química",
+                        (DiaSemana.Terca, 4 or 5) => "Inglês",
+                        (DiaSemana.Quarta, 4 or 5) => "Física",
+                        (DiaSemana.Quinta, 4 or 5) => "Português",
+                        (DiaSemana.Sexta, 4 or 5) => "Matemática",
+                        (DiaSemana.Segunda, 7 or 8) => "Matemática",
+                        (DiaSemana.Terca, 7 or 8) => "Português",
+                        (DiaSemana.Quarta, 7 or 8) => "Química",
+                        (DiaSemana.Quinta, 7 or 8) => "História",
+                        (DiaSemana.Sexta, 7 or 8) => "Geografia",
+                        (_, 10) => "Física",
+                        _ => "História"
                     };
 
+                    var prof = ObterTitular(disciplina);
                     horarios.Add(new HorarioAula(turma.Id, dia, faixa.Faixa, faixa.Ordem, disciplina, prof.Id, prof.Nome, false));
                 }
             }

@@ -11,213 +11,254 @@ import {
   Typography,
 } from '@mui/material';
 import LoginIcon from '@mui/icons-material/Login';
-import DomainAddIcon from '@mui/icons-material/DomainAdd';
-import SupervisorAccountIcon from '@mui/icons-material/SupervisorAccount';
-import PersonAddIcon from '@mui/icons-material/PersonAdd';
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+import PlayCircleOutlineIcon from '@mui/icons-material/PlayCircleOutline';
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import GroupsIcon from '@mui/icons-material/Groups';
 import FactCheckIcon from '@mui/icons-material/FactCheck';
 
-import logo from '../../assets/images/logo_sigei.svg';
+import {
+  HandDrawnArrow,
+  HandDrawnBolt,
+  HandDrawnSparkle,
+} from 'components/OrganicDecorations';
 import schoolIllustration from '../../assets/images/schoo.svg';
 
 const FEATURES = [
   {
     icon: <CalendarMonthIcon color="primary" fontSize="large" />,
-    title: 'Grades Semanais Dinamicas',
+    title: 'Grades Semanais Dinâmicas',
     description:
-      'Organize horarios por turma com deteccao automatica de conflitos de docentes.',
+      'Organize horários por turma com detecção automática de conflitos entre docentes.',
   },
   {
     icon: <GroupsIcon color="primary" fontSize="large" />,
-    title: 'Gestao de Professores',
+    title: 'Gestão de Professores',
     description:
-      'Acompanhe aulas efetivadas, carga horaria restante e faltas em tempo real.',
+      'Acompanhe aulas efetivadas, carga horária restante e faltas em tempo real.',
   },
   {
     icon: <FactCheckIcon color="primary" fontSize="large" />,
-    title: 'Onboarding por Codigo',
+    title: 'Onboarding por Código',
     description:
-      'Cadastre sua escola e libere um codigo exclusivo para coordenadores e docentes.',
+      'Cadastre sua instituição e libere um código exclusivo para coordenadores e docentes.',
   },
 ];
 
 export const Landing: React.FC = () => {
   return (
-    <Box sx={{ minHeight: '100vh', bgcolor: 'background.default', pb: 8 }}>
-      {/* Secao Hero com fundo roxo dedicado para garantir contraste em qualquer resolucao */}
-      <Box
-        sx={{
-          background: 'linear-gradient(135deg, #4C1D95 0%, #7C3AED 100%)',
-          pt: { xs: 2, md: 3 },
-          pb: { xs: 6, md: 10 },
-        }}
-      >
-        <Container maxWidth="lg">
-          {/* Barra de navegacao superior */}
-          <Box
-            component="nav"
-            aria-label="Navegacao principal"
-            sx={{
-              display: 'flex',
-              flexWrap: 'wrap',
-              alignItems: 'center',
-              justifyContent: 'space-between',
-              gap: 2,
-              py: 2,
-            }}
-          >
-            <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
-              <Box
-                component="img"
-                src={logo}
-                alt="Logotipo SIGEI"
-                sx={{ height: 42, width: 'auto' }}
-              />
+    <Box sx={{ minHeight: '100vh', bgcolor: 'background.default', pb: 10 }}>
+      <Container maxWidth="lg" sx={{ pt: { xs: 2, md: 3 } }}>
+        {/* Barra de navegacao superior editorial */}
+        <Box
+          component="nav"
+          aria-label="Navegação principal"
+          sx={{
+            display: 'flex',
+            flexWrap: 'wrap',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            gap: 2,
+            py: 2,
+            borderBottom: '1px solid #E0DDD8',
+          }}
+        >
+          <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.25 }}>
+            <Box
+              sx={{
+                width: 36,
+                height: 36,
+                borderRadius: '12px 16px 12px 18px',
+                bgcolor: 'primary.main',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                color: '#FFFFFF',
+                fontFamily: "'Dosis', sans-serif",
+                fontWeight: 800,
+                fontSize: '1.15rem',
+              }}
+            >
+              S
             </Box>
-
-            <Stack direction="row" spacing={1.5} flexWrap="wrap" useFlexGap>
-              <Button
-                component={RouterLink}
-                to="/sobre"
-                variant="text"
-                startIcon={<InfoOutlinedIcon />}
-                sx={{ color: '#FFFFFF', '&:hover': { bgcolor: 'rgba(255,255,255,0.14)' } }}
-              >
-                Sobre
-              </Button>
-              <Button
-                component={RouterLink}
-                to="/entrar"
-                variant="contained"
-                color="secondary"
-                startIcon={<LoginIcon />}
-              >
-                Entrar
-              </Button>
-            </Stack>
+            <Typography
+              variant="h5"
+              component="span"
+              sx={{ fontWeight: 800, color: 'primary.main', letterSpacing: '0.03em' }}
+            >
+              SIGEI
+            </Typography>
           </Box>
 
-          {/* Hero Section */}
-          <Grid container spacing={4} alignItems="center" sx={{ mt: { xs: 2, md: 4 } }}>
-            <Grid size={{ xs: 12, md: 6 }}>
-              <Typography
-                variant="h2"
-                component="h1"
-                sx={{
-                  color: '#FFFFFF',
-                  fontWeight: 800,
-                  fontSize: { xs: '2rem', sm: '2.5rem', md: '3rem' },
-                  lineHeight: 1.15,
-                  mb: 2,
-                }}
-              >
-                Gerenciamento escolar inteligente e sem conflitos.
-              </Typography>
-              <Typography
-                variant="body1"
-                sx={{ color: '#EDE9FE', fontSize: '1.1rem', mb: 4, maxWidth: 520 }}
-              >
-                Uma plataforma completa para coordenadores e professores gerenciarem grades de horarios,
-                turmas e carga horaria docente com agilidade.
-              </Typography>
+          <Stack direction="row" spacing={1.5} flexWrap="wrap" useFlexGap>
+            <Button
+              component={RouterLink}
+              to="/sobre"
+              variant="text"
+              startIcon={<InfoOutlinedIcon />}
+              sx={{ color: 'text.primary' }}
+            >
+              Sobre
+            </Button>
+            <Button
+              component={RouterLink}
+              to="/entrar"
+              variant="outlined"
+              color="primary"
+              startIcon={<LoginIcon />}
+            >
+              Entrar
+            </Button>
+          </Stack>
+        </Box>
 
-              <Grid container spacing={1.5}>
-                <Grid size={{ xs: 12, sm: 6 }}>
-                  <Button
-                    component={RouterLink}
-                    to="/cadastroescola"
-                    variant="contained"
-                    fullWidth
-                    startIcon={<DomainAddIcon />}
-                    sx={{
-                      bgcolor: '#FFFFFF',
-                      color: '#4C1D95',
-                      '&:hover': { bgcolor: '#F3E8FF' },
-                    }}
-                  >
-                    Cadastro de Escolas
-                  </Button>
-                </Grid>
-                <Grid size={{ xs: 12, sm: 6 }}>
-                  <Button
-                    component={RouterLink}
-                    to="/cadastrocoord"
-                    variant="outlined"
-                    fullWidth
-                    startIcon={<SupervisorAccountIcon />}
-                    sx={{
-                      color: '#FFFFFF',
-                      bgcolor: 'rgba(255, 255, 255, 0.12)',
-                      borderColor: 'rgba(255, 255, 255, 0.75)',
-                      '&:hover': {
-                        borderColor: '#FFFFFF',
-                        bgcolor: 'rgba(255, 255, 255, 0.22)',
-                      },
-                    }}
-                  >
-                    Cadastro Coordenador
-                  </Button>
-                </Grid>
-                <Grid size={{ xs: 12, sm: 6 }}>
-                  <Button
-                    component={RouterLink}
-                    to="/cadastroprof"
-                    variant="outlined"
-                    fullWidth
-                    startIcon={<PersonAddIcon />}
-                    sx={{
-                      color: '#FFFFFF',
-                      bgcolor: 'rgba(255, 255, 255, 0.12)',
-                      borderColor: 'rgba(255, 255, 255, 0.75)',
-                      '&:hover': {
-                        borderColor: '#FFFFFF',
-                        bgcolor: 'rgba(255, 255, 255, 0.22)',
-                      },
-                    }}
-                  >
-                    Cadastro Professor
-                  </Button>
-                </Grid>
-                <Grid size={{ xs: 12, sm: 6 }}>
-                  <Button
-                    component={RouterLink}
-                    to="/coordambiente"
-                    variant="contained"
-                    color="secondary"
-                    fullWidth
-                  >
-                    Acessar Painel Demo
-                  </Button>
-                </Grid>
-              </Grid>
-            </Grid>
+        {/* Hero Section com composicao editorial assimetrica */}
+        <Grid
+          container
+          spacing={{ xs: 4, md: 6 }}
+          alignItems="center"
+          sx={{ mt: { xs: 3, md: 6 }, mb: { xs: 6, md: 9 } }}
+        >
+          <Grid size={{ xs: 12, md: 7 }}>
+            <Stack direction="row" alignItems="center" spacing={1} sx={{ mb: 1.5 }}>
+              <HandDrawnSparkle size={22} color="#FFA000" />
+              <Typography
+                variant="body2"
+                sx={{ fontWeight: 700, color: 'primary.main', letterSpacing: '0.04em' }}
+              >
+                GESTÃO ESCOLAR HUMANIZADA
+              </Typography>
+            </Stack>
 
-            <Grid size={{ xs: 12, md: 6 }} sx={{ textAlign: 'center' }}>
+            <Typography
+              variant="h1"
+              sx={{
+                fontSize: { xs: '2.35rem', sm: '3rem', md: '3.5rem' },
+                lineHeight: 1.08,
+                mb: 2.5,
+              }}
+            >
+              Gerenciamento escolar{' '}
+              <Box component="span" sx={{ color: 'primary.main' }}>
+                inteligente
+              </Box>{' '}
+              e sem conflitos.
+            </Typography>
+
+            <Typography
+              variant="body1"
+              sx={{ color: 'text.secondary', fontSize: '1.1rem', mb: 4, maxWidth: 520 }}
+            >
+              Plataforma completa para coordenadores e professores gerenciarem grades de horários,
+              turmas e carga horária docente com agilidade.
+            </Typography>
+
+            <Stack
+              direction={{ xs: 'column', sm: 'row' }}
+              spacing={2}
+              alignItems={{ xs: 'stretch', sm: 'center' }}
+            >
+              <Button
+                component={RouterLink}
+                to="/comecar"
+                variant="contained"
+                color="secondary"
+                size="large"
+                endIcon={<ArrowForwardIcon />}
+                sx={{ px: 3.5, py: 1.5, fontSize: '1rem', color: '#FFFFFF' }}
+              >
+                Começar agora
+              </Button>
+
+              <Button
+                component={RouterLink}
+                to="/coordambiente"
+                variant="outlined"
+                color="primary"
+                size="large"
+                startIcon={<PlayCircleOutlineIcon />}
+              >
+                Acessar Painel Demo
+              </Button>
+            </Stack>
+
+            <Box sx={{ display: { xs: 'none', sm: 'flex' }, alignItems: 'center', gap: 1, mt: 2, ml: 2 }}>
+              <HandDrawnArrow color="#287F78" />
+              <Typography variant="caption" sx={{ color: 'text.secondary', fontWeight: 600 }}>
+                Configure sua escola em poucos minutos
+              </Typography>
+            </Box>
+          </Grid>
+
+          <Grid size={{ xs: 12, md: 5 }}>
+            {/* Blocos de cores sobrepostos com formas organicas arredondadas */}
+            <Box
+              sx={{
+                position: 'relative',
+                maxWidth: 400,
+                mx: 'auto',
+                p: 3,
+              }}
+            >
               <Box
-                component="img"
-                src={schoolIllustration}
-                alt="Ilustracao de ambiente escolar SIGEI"
                 sx={{
-                  width: '100%',
-                  maxWidth: 440,
-                  height: 'auto',
-                  filter: 'drop-shadow(0 18px 36px rgba(15, 23, 42, 0.25))',
+                  position: 'absolute',
+                  top: 12,
+                  right: 8,
+                  width: '82%',
+                  height: '86%',
+                  bgcolor: 'primary.main',
+                  borderRadius: '36% 64% 58% 42% / 44% 38% 62% 56%',
+                  zIndex: 0,
                 }}
               />
-            </Grid>
+              <Box
+                sx={{
+                  position: 'absolute',
+                  bottom: 6,
+                  left: 10,
+                  width: 110,
+                  height: 110,
+                  bgcolor: 'secondary.main',
+                  borderRadius: '54% 46% 38% 62% / 48% 58% 42% 52%',
+                  zIndex: 0,
+                }}
+              />
+              <Box
+                sx={{
+                  position: 'relative',
+                  zIndex: 1,
+                  bgcolor: 'rgba(249, 246, 243, 0.94)',
+                  borderRadius: '28px',
+                  boxShadow: '0 12px 32px rgba(37, 35, 33, 0.08)',
+                  p: 4,
+                  textAlign: 'center',
+                }}
+              >
+                <Box sx={{ position: 'absolute', top: -16, left: -12 }}>
+                  <HandDrawnBolt color="#FFA000" />
+                </Box>
+                <Box sx={{ position: 'absolute', bottom: -14, right: 16 }}>
+                  <HandDrawnSparkle color="#287F78" size={32} />
+                </Box>
+                <Box
+                  component="img"
+                  src={schoolIllustration}
+                  alt="Ilustração de ambiente escolar SIGEI"
+                  sx={{ width: '100%', maxWidth: 270, height: 'auto' }}
+                />
+              </Box>
+            </Box>
           </Grid>
-        </Container>
-      </Box>
+        </Grid>
 
-      {/* Cards de Funcionalidades */}
-      <Container maxWidth="lg" sx={{ mt: { xs: 3, md: -4 } }}>
+        {/* Cards de Funcionalidades */}
         <Grid container spacing={3}>
           {FEATURES.map((feature) => (
             <Grid key={feature.title} size={{ xs: 12, md: 4 }}>
               <Card sx={{ height: '100%' }}>
-                <CardContent sx={{ p: 3 }}>
+                <CardContent sx={{ p: 3.5 }}>
                   <Box sx={{ mb: 1.5 }}>{feature.icon}</Box>
                   <Typography variant="h6" gutterBottom>
                     {feature.title}

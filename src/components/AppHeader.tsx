@@ -32,11 +32,11 @@ export const AppHeader: React.FC<AppHeaderProps> = ({
   return (
     <Box
       sx={{
-        background: 'linear-gradient(135deg, #7C3AED 0%, #4C1D95 100%)',
+        bgcolor: 'primary.main',
         color: '#FFFFFF',
         pb: { xs: 4, md: 5 },
         mb: { xs: 3, md: 4 },
-        boxShadow: '0 8px 30px rgba(76, 29, 149, 0.18)',
+        borderBottom: '4px solid #FFA000',
       }}
     >
       <AppBar position="static" color="transparent" elevation={0}>
@@ -47,7 +47,7 @@ export const AppHeader: React.FC<AppHeaderProps> = ({
                 <IconButton
                   component={RouterLink}
                   to={backTo}
-                  aria-label="Voltar para pagina anterior"
+                  aria-label="Voltar para página anterior"
                   sx={{
                     color: '#FFFFFF',
                     minWidth: 44,
@@ -77,10 +77,10 @@ export const AppHeader: React.FC<AppHeaderProps> = ({
             </Box>
 
             {showUserActions && (
-              <Tooltip title="Sair para inicio">
+              <Tooltip title="Sair para início">
                 <IconButton
                   onClick={handleLogout}
-                  aria-label="Sair da sessao"
+                  aria-label="Sair da sessão"
                   sx={{
                     color: '#FFFFFF',
                     minWidth: 44,

@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Sigei.Application")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e3d5bb67accd6323ae8579336260da2b2fdaff90")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+82d0a7647591142186462711c1a40715fcde1958")]
 [assembly: System.Reflection.AssemblyProductAttribute("Sigei.Application")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Sigei.Application")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

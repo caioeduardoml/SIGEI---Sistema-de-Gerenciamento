@@ -46,7 +46,7 @@ export const GradeCoord: React.FC = () => {
     <Box sx={{ minHeight: '100vh', bgcolor: 'background.default', pb: 6 }}>
       <AppHeader
         title="Grade de Aulas"
-        subtitle="Alterne entre as turmas e ajuste horarios com verificacao automatica de conflitos."
+        subtitle="Alterne entre as turmas e ajuste horários com detecção automática de conflitos."
         backTo="/coordambiente"
       />
       <SuspenseLoader>

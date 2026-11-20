@@ -116,4 +116,62 @@ public sealed class HandlersTests
             new AtualizarHorarioSlotCommand(slot.Id, "Portugues", prof.Id, null),
             CancellationToken.None));
     }
+
+    [Fact]
+    public async Task AtualizarProfessor_QuandoEscolaCorresponde_DeveAtualizarDados()
+    {
+        var usuarioRepo = new Mock<IUsuarioRepository>();
+        var uow = new Mock<IUnitOfWork>();
+        var escolaId = Guid.NewGuid();
+        var prof = new Usuario(escolaId, "Antigo", "M1", "111", "Fisica", "a@e.com", "h", PerfilUsuario.Professor, 50);
+
+        usuarioRepo.Setup(r => r.ObterPorIdAsync(prof.Id, It.IsAny<CancellationToken>())).ReturnsAsync(prof);
+
+        var handler = new AtualizarProfessorCommandHandler(usuarioRepo.Object, uow.Object);
+        var result = await handler.Handle(
+            new AtualizarProfessorCommand(prof.Id, "Novo Nome", "M2", "111", "Matematica", "n@e.com", 60, escolaId),
+            CancellationToken.None);
+
+        Assert.Equal("Novo Nome", result.Nome);
+        Assert.Equal(60, result.AulasTotaisSemestre);
+        uow.Verify(u => u.SaveChangesAsync(It.IsAny<CancellationToken>()), Times.Once);
+    }
+
+    [Fact]
+    public async Task ExcluirTurma_QuandoEscolaDiferente_DeveLancarUnauthorizedException()
+    {
+        var turmaRepo = new Mock<ITurmaRepository>();
+        var uow = new Mock<IUnitOfWork>();
+        var turma = new Turma(Guid.NewGuid(), "1A", "1o Ano A", "Info");
+
+        turmaRepo.Setup(r => r.ObterPorIdAsync(turma.Id, It.IsAny<CancellationToken>())).ReturnsAsync(turma);
+
+        var handler = new ExcluirTurmaCommandHandler(turmaRepo.Object, uow.Object);
+
+        await Assert.ThrowsAsync<UnauthorizedException>(() => handler.Handle(
+            new ExcluirTurmaCommand(turma.Id, Guid.NewGuid()),
+            CancellationToken.None));
+    }
+
+    [Fact]
+    public async Task RegistrarAulasEmLote_DeveAtualizarTodosOsProfessoresSelecionados()
+    {
+        var usuarioRepo = new Mock<IUsuarioRepository>();
+        var uow = new Mock<IUnitOfWork>();
+        var escolaId = Guid.NewGuid();
+        var prof1 = new Usuario(escolaId, "Prof 1", "M1", "111", "Mat", "p1@e.com", "h", PerfilUsuario.Professor, 50);
+        var prof2 = new Usuario(escolaId, "Prof 2", "M2", "222", "Fis", "p2@e.com", "h", PerfilUsuario.Professor, 50);
+
+        usuarioRepo.Setup(r => r.ObterPorIdAsync(prof1.Id, It.IsAny<CancellationToken>())).ReturnsAsync(prof1);
+        usuarioRepo.Setup(r => r.ObterPorIdAsync(prof2.Id, It.IsAny<CancellationToken>())).ReturnsAsync(prof2);
+
+        var handler = new RegistrarAulasEmLoteCommandHandler(usuarioRepo.Object, uow.Object);
+        var result = await handler.Handle(
+            new RegistrarAulasEmLoteCommand([prof1.Id, prof2.Id], TipoRegistroAula.Efetivada, 2, escolaId),
+            CancellationToken.None);
+
+        Assert.Equal(2, result.Count);
+        Assert.All(result, p => Assert.Equal(2, p.AulasEfetivadas));
+        uow.Verify(u => u.SaveChangesAsync(It.IsAny<CancellationToken>()), Times.Once);
+    }
 }

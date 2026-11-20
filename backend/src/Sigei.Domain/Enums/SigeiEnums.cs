@@ -4,7 +4,8 @@ namespace Sigei.Domain.Enums;
 public enum PerfilUsuario
 {
     Coordenador = 1,
-    Professor = 2
+    Professor = 2,
+    Diretor = 3
 }
 
 // Dias letivos da semana para a grade horaria

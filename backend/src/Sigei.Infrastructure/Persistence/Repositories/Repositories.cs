@@ -74,12 +74,24 @@ public sealed class UsuarioRepository(SigeiDbContext dbContext) : IUsuarioReposi
         return await query.OrderBy(u => u.Nome).ToListAsync(cancellationToken);
     }
 
+    public async Task<IReadOnlyList<Usuario>> ListarCoordenadoresAsync(CancellationToken cancellationToken = default)
+        => await dbContext.Usuarios
+            .AsNoTracking()
+            .Where(u => u.Perfil == PerfilUsuario.Coordenador)
+            .OrderBy(u => u.Nome)
+            .ToListAsync(cancellationToken);
+
     public async Task AdicionarAsync(Usuario usuario, CancellationToken cancellationToken = default)
         => await dbContext.Usuarios.AddAsync(usuario, cancellationToken);
+
+    public void Remover(Usuario usuario)
+        => dbContext.Usuarios.Remove(usuario);
 }
 
 public sealed class TurmaRepository(SigeiDbContext dbContext) : ITurmaRepository
 {
+    public async Task<Turma?> ObterPorIdAsync(Guid id, CancellationToken cancellationToken = default)
+        => await dbContext.Turmas.FirstOrDefaultAsync(t => t.Id == id, cancellationToken);
     public async Task<Turma?> ObterPorIdComGradeAsync(Guid id, CancellationToken cancellationToken = default)
         => await dbContext.Turmas
             .AsNoTracking()
@@ -108,6 +120,9 @@ public sealed class TurmaRepository(SigeiDbContext dbContext) : ITurmaRepository
 
     public async Task AdicionarAsync(Turma turma, CancellationToken cancellationToken = default)
         => await dbContext.Turmas.AddAsync(turma, cancellationToken);
+
+    public void Remover(Turma turma)
+        => dbContext.Turmas.Remove(turma);
 }
 
 public sealed class HorarioAulaRepository(SigeiDbContext dbContext) : IHorarioAulaRepository

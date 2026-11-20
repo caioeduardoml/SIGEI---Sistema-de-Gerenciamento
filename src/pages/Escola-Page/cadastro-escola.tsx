@@ -23,9 +23,9 @@ import { escolasApi } from 'features/escolas/api/escolasApi';
 
 const escolaSchema = z.object({
   nome: z.string().min(3, 'Informe o nome da escola.'),
-  email: z.string().email('Informe um e-mail valido.'),
-  telefone: z.string().min(8, 'Informe um telefone valido.'),
-  endereco: z.string().min(5, 'Informe o endereco completo.'),
+  email: z.string().email('Informe um e-mail válido.'),
+  telefone: z.string().min(8, 'Informe um telefone válido.'),
+  endereco: z.string().min(5, 'Informe o endereço completo.'),
 });
 
 type EscolaFormValues = z.infer<typeof escolaSchema>;
@@ -67,8 +67,8 @@ export const CadastroEscola: React.FC = () => {
     <Box sx={{ minHeight: '100vh', bgcolor: 'background.default', pb: 6 }}>
       <AppHeader
         title="Cadastro de Escola"
-        subtitle="Preencha os dados da instituicao para gerar o codigo de acesso dos servidores."
-        backTo="/"
+        subtitle="Preencha os dados da instituição para gerar o código de acesso dos servidores."
+        backTo="/comecar"
         showUserActions={false}
       />
 
@@ -78,18 +78,19 @@ export const CadastroEscola: React.FC = () => {
             <Stack spacing={3} component="form" onSubmit={handleSubmit(onSubmit)} noValidate>
               {codigoGerado && (
                 <Alert severity="success">
-                  Escola registrada! Codigo de verificacao para servidores:{' '}
+                  Escola registrada! Código de verificação para servidores:{' '}
                   <strong>{codigoGerado}</strong>
                 </Alert>
               )}
 
-              <Typography variant="h6">Dados da Instituicao</Typography>
+              <Typography variant="h6">Dados da Instituição</Typography>
 
               <Grid container spacing={2.5}>
                 <Grid size={{ xs: 12 }}>
                   <TextField
                     id="escola-nome"
                     label="Nome da escola"
+                    slotProps={{ inputLabel: { shrink: true } }}
                     error={Boolean(errors.nome)}
                     helperText={errors.nome?.message}
                     {...register('nome')}
@@ -101,6 +102,7 @@ export const CadastroEscola: React.FC = () => {
                     id="escola-email"
                     label="E-mail institucional"
                     type="email"
+                    slotProps={{ inputLabel: { shrink: true } }}
                     error={Boolean(errors.email)}
                     helperText={errors.email?.message}
                     {...register('email')}
@@ -111,6 +113,7 @@ export const CadastroEscola: React.FC = () => {
                   <TextField
                     id="escola-telefone"
                     label="Telefone"
+                    slotProps={{ inputLabel: { shrink: true } }}
                     error={Boolean(errors.telefone)}
                     helperText={errors.telefone?.message}
                     {...register('telefone')}
@@ -120,7 +123,8 @@ export const CadastroEscola: React.FC = () => {
                 <Grid size={{ xs: 12 }}>
                   <TextField
                     id="escola-endereco"
-                    label="Endereco"
+                    label="Endereço"
+                    slotProps={{ inputLabel: { shrink: true } }}
                     error={Boolean(errors.endereco)}
                     helperText={errors.endereco?.message}
                     {...register('endereco')}
@@ -129,7 +133,7 @@ export const CadastroEscola: React.FC = () => {
               </Grid>
 
               <Alert severity="info">
-                Apos o cadastro, compartilhe o codigo gerado com coordenadores e professores da
+                Após o cadastro, compartilhe o código gerado com coordenadores e professores da
                 escola para que possam criar suas contas.
               </Alert>
 

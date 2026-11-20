@@ -94,4 +94,23 @@ public sealed class Usuario : BaseEntity
         AulasEfetivadas = efetivadas;
         Faltas = faltas;
     }
+
+    public void AtualizarDados(string nome, string matricula, string cpf, string area, string email, int aulasTotaisSemestre)
+    {
+        if (string.IsNullOrWhiteSpace(nome))
+            throw new DomainException("O nome completo e obrigatorio.");
+        if (string.IsNullOrWhiteSpace(matricula))
+            throw new DomainException("A matricula e obrigatoria.");
+        if (string.IsNullOrWhiteSpace(email))
+            throw new DomainException("O e-mail e obrigatorio.");
+        if (aulasTotaisSemestre < AulasEfetivadas + Faltas)
+            throw new DomainException("A carga horaria total nao pode ser menor que a soma de aulas efetivadas e faltas.");
+
+        Nome = nome.Trim();
+        Matricula = matricula.Trim();
+        Cpf = cpf.Trim();
+        Area = area.Trim();
+        Email = email.Trim().ToLowerInvariant();
+        AulasTotaisSemestre = aulasTotaisSemestre;
+    }
 }

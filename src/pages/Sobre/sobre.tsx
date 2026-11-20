@@ -14,14 +14,11 @@ import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined';
 import PhoneOutlinedIcon from '@mui/icons-material/PhoneOutlined';
 
 import AppHeader from 'components/AppHeader';
-import Gaby from '../../assets/images/prof-gabriella.jpg';
-import Caio from '../../assets/images/prof-caio.jpg';
-import Biliu from '../../assets/images/prof-biliu.jpg';
 
 const EQUIPE = [
-  { nome: 'Gabriella', papel: 'Idealizacao & Matematica', foto: Gaby },
-  { nome: 'Caio Gilberto', papel: 'Arquitetura & Fisica', foto: Caio },
-  { nome: 'Joao Vitor (Biliu)', papel: 'Produto & Linguagens', foto: Biliu },
+  { nome: 'Gabriella', papel: 'Idealização & Matemática', inicial: 'G' },
+  { nome: 'Caio Gilberto', papel: 'Arquitetura & Física', inicial: 'C' },
+  { nome: 'João Vitor (Biliu)', papel: 'Produto & Linguagens', inicial: 'J' },
 ];
 
 export const Sobre: React.FC = () => {
@@ -29,7 +26,7 @@ export const Sobre: React.FC = () => {
     <Box sx={{ minHeight: '100vh', bgcolor: 'background.default', pb: 6 }}>
       <AppHeader
         title="Sobre o SIGEI"
-        subtitle="Conheca nossa plataforma de gerenciamento pedagogico e escolar."
+        subtitle="Conheça nossa plataforma de gerenciamento pedagógico e escolar."
         backTo="/"
         showUserActions={false}
       />
@@ -39,13 +36,13 @@ export const Sobre: React.FC = () => {
           <Card>
             <CardContent sx={{ p: { xs: 3, md: 4 } }}>
               <Typography variant="h5" gutterBottom>
-                Nossa Missao
+                Nossa Missão
               </Typography>
               <Typography variant="body1" color="text.secondary">
-                O SIGEI e um sistema criado para proporcionar melhor desempenho e organizacao das
-                atividades pedagogicas no ambiente escolar. Com ele, e possivel montar grades
+                O SIGEI é um sistema criado para proporcionar melhor desempenho e organização das
+                atividades pedagógicas no ambiente escolar. Com ele, é possível montar grades
                 semanais sem conflitos, contabilizar aulas efetivadas e faltas de docentes e
-                facilitar a comunicacao entre coordenacao e professores.
+                facilitar a comunicação entre coordenação e professores.
               </Typography>
             </CardContent>
           </Card>
@@ -55,15 +52,45 @@ export const Sobre: React.FC = () => {
               Equipe
             </Typography>
             <Grid container spacing={2.5}>
-              {EQUIPE.map((membro) => (
+              {EQUIPE.map((membro, idx) => (
                 <Grid key={membro.nome} size={{ xs: 12, sm: 4 }}>
                   <Card sx={{ textAlign: 'center', height: '100%' }}>
                     <CardContent sx={{ p: 3 }}>
-                      <Avatar
-                        src={membro.foto}
-                        alt={`Foto de ${membro.nome}`}
-                        sx={{ width: 88, height: 88, mx: 'auto', mb: 2 }}
-                      />
+                      <Box
+                        sx={{
+                          position: 'relative',
+                          width: 100,
+                          height: 100,
+                          mx: 'auto',
+                          mb: 2,
+                        }}
+                      >
+                        <Box
+                          sx={{
+                            position: 'absolute',
+                            inset: -4,
+                            bgcolor: idx % 2 === 0 ? 'primary.main' : 'secondary.main',
+                            borderRadius: '44% 56% 52% 48% / 48% 42% 58% 52%',
+                          }}
+                        />
+                        <Avatar
+                          aria-label={`Avatar de ${membro.nome}`}
+                          sx={{
+                            position: 'relative',
+                            width: 88,
+                            height: 88,
+                            bgcolor: idx % 2 === 0 ? 'primary.main' : 'secondary.main',
+                            color: '#FFFFFF',
+                            fontFamily: "'Dosis', sans-serif",
+                            fontSize: '2rem',
+                            fontWeight: 800,
+                            border: '3px solid #F9F6F3',
+                            borderRadius: '44% 56% 52% 48% / 48% 42% 58% 52%',
+                          }}
+                        >
+                          {membro.inicial}
+                        </Avatar>
+                      </Box>
                       <Typography variant="h6">{membro.nome}</Typography>
                       <Typography variant="body2">{membro.papel}</Typography>
                     </CardContent>

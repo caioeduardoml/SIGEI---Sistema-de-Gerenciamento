@@ -18,16 +18,20 @@ public interface IUsuarioRepository
     Task<Usuario?> ObterPorEmailAsync(string email, CancellationToken cancellationToken = default);
     Task<bool> ExisteEmailOuCpfAsync(string email, string cpf, CancellationToken cancellationToken = default);
     Task<IReadOnlyList<Usuario>> ListarProfessoresAsync(string? nome, string? disciplina, CancellationToken cancellationToken = default);
+    Task<IReadOnlyList<Usuario>> ListarCoordenadoresAsync(CancellationToken cancellationToken = default);
     Task AdicionarAsync(Usuario usuario, CancellationToken cancellationToken = default);
+    void Remover(Usuario usuario);
 }
 
 public interface ITurmaRepository
 {
+    Task<Turma?> ObterPorIdAsync(Guid id, CancellationToken cancellationToken = default);
     Task<Turma?> ObterPorIdComGradeAsync(Guid id, CancellationToken cancellationToken = default);
     Task<Turma?> ObterPorCodigoComGradeAsync(string codigo, CancellationToken cancellationToken = default);
     Task<bool> ExisteCodigoAsync(Guid escolaId, string codigo, CancellationToken cancellationToken = default);
     Task<IReadOnlyList<Turma>> ListarTodasAsync(CancellationToken cancellationToken = default);
     Task AdicionarAsync(Turma turma, CancellationToken cancellationToken = default);
+    void Remover(Turma turma);
 }
 
 public interface IHorarioAulaRepository

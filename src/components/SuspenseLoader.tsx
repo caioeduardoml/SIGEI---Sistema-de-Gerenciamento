@@ -27,7 +27,7 @@ class LocalErrorBoundary extends Component<{ children: React.ReactNode }, ErrorB
         <Box sx={{ maxWidth: 640, mx: 'auto', p: 3 }}>
           <Paper sx={{ p: 4, textAlign: 'center' }}>
             <Typography variant="h6" gutterBottom>
-              Nao foi possivel carregar esta secao
+              Não foi possível carregar esta seção
             </Typography>
             <Typography variant="body2" sx={{ mb: 3 }}>
               {this.state.errorMessage}

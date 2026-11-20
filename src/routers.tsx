@@ -3,6 +3,7 @@ import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import SuspenseLoader from 'components/SuspenseLoader';
 
 const Landing = lazy(() => import('./pages/Landing'));
+const Onboarding = lazy(() => import('./pages/Onboarding'));
 const Login = lazy(() => import('./pages/Login-Page/login'));
 const CadastroEscola = lazy(() => import('./pages/Escola-Page/cadastro-escola'));
 const CadastroCoord = lazy(() => import('./pages/Coord-Page/cadastro-coord'));
@@ -23,6 +24,7 @@ export const AppRoutes: React.FC = () => {
       <SuspenseLoader>
         <Routes>
           <Route path="/" element={<Landing />} />
+          <Route path="/comecar" element={<Onboarding />} />
           <Route path="/entrar" element={<Login />} />
           <Route path="/cadastroescola" element={<CadastroEscola />} />
           <Route path="/cadastrocoord" element={<CadastroCoord />} />

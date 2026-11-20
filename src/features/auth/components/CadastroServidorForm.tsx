@@ -26,16 +26,16 @@ import type { PerfilUsuario } from 'types/sigei';
 const servidorSchema = z
   .object({
     nome: z.string().min(3, 'Informe o nome completo.'),
-    matricula: z.string().min(2, 'Informe a matricula.'),
-    cpf: z.string().min(11, 'Informe um CPF valido.'),
-    codigoEscola: z.string().min(4, 'Informe o codigo de verificacao da escola (ex.: SIGEI-2026).'),
-    area: z.string().min(2, 'Informe a area ou disciplina.'),
-    email: z.string().email('Informe um e-mail valido.'),
-    senha: z.string().min(6, 'A senha deve ter no minimo 6 caracteres.'),
+    matricula: z.string().min(2, 'Informe a matrícula.'),
+    cpf: z.string().min(11, 'Informe um CPF válido.'),
+    codigoEscola: z.string().min(4, 'Informe o código de verificação da escola (ex.: SIGEI-2026).'),
+    area: z.string().min(2, 'Informe a área ou disciplina.'),
+    email: z.string().email('Informe um e-mail válido.'),
+    senha: z.string().min(6, 'A senha deve ter no mínimo 6 caracteres.'),
     confirmarSenha: z.string().min(6, 'Confirme sua senha.'),
   })
   .refine((data) => data.senha === data.confirmarSenha, {
-    message: 'As senhas nao conferem.',
+    message: 'As senhas não conferem.',
     path: ['confirmarSenha'],
   });
 
@@ -94,8 +94,8 @@ export const CadastroServidorForm: React.FC<CadastroServidorFormProps> = ({ tipo
     <Box sx={{ minHeight: '100vh', bgcolor: 'background.default', pb: 6 }}>
       <AppHeader
         title={isCoordenador ? 'Cadastro de Coordenador' : 'Cadastro de Professor'}
-        subtitle="Preencha seus dados e informe o codigo de verificacao da escola."
-        backTo="/"
+        subtitle="Preencha seus dados e informe o código de verificação da escola."
+        backTo="/comecar"
         showUserActions={false}
       />
 
@@ -110,6 +110,7 @@ export const CadastroServidorForm: React.FC<CadastroServidorFormProps> = ({ tipo
                   <TextField
                     id="servidor-nome"
                     label="Nome completo"
+                    slotProps={{ inputLabel: { shrink: true } }}
                     error={Boolean(errors.nome)}
                     helperText={errors.nome?.message}
                     {...register('nome')}
@@ -119,7 +120,8 @@ export const CadastroServidorForm: React.FC<CadastroServidorFormProps> = ({ tipo
                 <Grid size={{ xs: 12, md: 3 }}>
                   <TextField
                     id="servidor-matricula"
-                    label="Matricula"
+                    label="Matrícula"
+                    slotProps={{ inputLabel: { shrink: true } }}
                     error={Boolean(errors.matricula)}
                     helperText={errors.matricula?.message}
                     {...register('matricula')}
@@ -130,6 +132,7 @@ export const CadastroServidorForm: React.FC<CadastroServidorFormProps> = ({ tipo
                   <TextField
                     id="servidor-cpf"
                     label="CPF"
+                    slotProps={{ inputLabel: { shrink: true } }}
                     error={Boolean(errors.cpf)}
                     helperText={errors.cpf?.message}
                     {...register('cpf')}
@@ -139,9 +142,10 @@ export const CadastroServidorForm: React.FC<CadastroServidorFormProps> = ({ tipo
                 <Grid size={{ xs: 12, md: 6 }}>
                   <TextField
                     id="servidor-codigo-escola"
-                    label="Codigo de verificacao da escola"
+                    label="Código de verificação da escola"
+                    slotProps={{ inputLabel: { shrink: true } }}
                     error={Boolean(errors.codigoEscola)}
-                    helperText={errors.codigoEscola?.message ?? 'Codigo padrao demo: SIGEI-2026'}
+                    helperText={errors.codigoEscola?.message ?? 'Código padrão demo: SIGEI-2026'}
                     {...register('codigoEscola')}
                   />
                 </Grid>
@@ -149,7 +153,8 @@ export const CadastroServidorForm: React.FC<CadastroServidorFormProps> = ({ tipo
                 <Grid size={{ xs: 12, md: 6 }}>
                   <TextField
                     id="servidor-area"
-                    label={isCoordenador ? 'Area de Coordenacao' : 'Area de Atuacao / Disciplina'}
+                    label={isCoordenador ? 'Área de Coordenação' : 'Área de Atuação / Disciplina'}
+                    slotProps={{ inputLabel: { shrink: true } }}
                     error={Boolean(errors.area)}
                     helperText={errors.area?.message}
                     {...register('area')}
@@ -161,6 +166,7 @@ export const CadastroServidorForm: React.FC<CadastroServidorFormProps> = ({ tipo
                     id="servidor-email"
                     label="E-mail"
                     type="email"
+                    slotProps={{ inputLabel: { shrink: true } }}
                     error={Boolean(errors.email)}
                     helperText={errors.email?.message}
                     {...register('email')}
@@ -172,6 +178,7 @@ export const CadastroServidorForm: React.FC<CadastroServidorFormProps> = ({ tipo
                     id="servidor-senha"
                     label="Senha"
                     type="password"
+                    slotProps={{ inputLabel: { shrink: true } }}
                     error={Boolean(errors.senha)}
                     helperText={errors.senha?.message}
                     {...register('senha')}
@@ -183,6 +190,7 @@ export const CadastroServidorForm: React.FC<CadastroServidorFormProps> = ({ tipo
                     id="servidor-confirmar-senha"
                     label="Repita a sua senha"
                     type="password"
+                    slotProps={{ inputLabel: { shrink: true } }}
                     error={Boolean(errors.confirmarSenha)}
                     helperText={errors.confirmarSenha?.message}
                     {...register('confirmarSenha')}
@@ -191,7 +199,7 @@ export const CadastroServidorForm: React.FC<CadastroServidorFormProps> = ({ tipo
               </Grid>
 
               <Alert severity="info">
-                Verifique o codigo da escola com a direcao ou coordenacao antes de concluir.
+                Verifique o código da escola com a direção ou coordenação antes de concluir.
               </Alert>
 
               <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
